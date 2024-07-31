@@ -86,12 +86,13 @@ print(factorial(5).." is the factorial")
 function lcm(a,b)
   
 end
---]]
+
 --Loops and Conditionals
 --GCD functions
 function GCD(a,b)
   if b == 0 then
     return a
+  end
 --Fibonati Sequence
 function fibonacci(n)
   if n <= 1 then
@@ -104,13 +105,13 @@ end
 for i = 0,20 do
   print(fibonacci(i))
 end
-
+fibonacci(10)
 --Loops
     --for loop
-for i = 1, 10 do
+for i = 2,2,10 do
   print(i)
 end
---white loops
+--while loops
 local j = 1
 while j <= 10 do
   print(j)
@@ -138,4 +139,59 @@ for i = 1, 5 do
     end
   print(sum)
 end
+--]]
+--TABLES(Car table)
+local cars = {"Volks Wagon", "Lambo", "Buggati"}
 
+-- Accesse the elements of the car table
+print(cars[1])
+print(cars[2])
+print(cars[3])
+--NOTICE HOW THE CARS ARE ACCESED FROM 1 - NTH value. There is no 0 value in lua!
+
+-- Adding new stuff to the car table
+table.insert(cars, "Humvee")
+print(cars[4])
+
+-- Iterating over car table
+for i, cars in ipairs(cars) do
+    print(i, cars)
+end
+
+-- Key pairs
+local person = {
+    name = "Kadu",
+    age = 15,
+    area = "CALIFORNIA"
+}
+
+-- getting key pairs
+print(person.name)
+print(person.age)
+print(person.area)
+
+--modifying these key pair values.
+person.age = 31
+print(person.age)
+
+--Store Mini Project
+
+local inventory = {
+  {item ="Milk", quantity = 50, price = 1.50},
+  {item = "Rice", quantity = 100,price = 2.00},
+  {item = "Eggs", quantity = 75, price = 3.00},
+  {item = "Cereal", quanity = 2, price = 10.00}
+}
+
+local function addInventory(item, quantity, price)
+  table.insert(inventory, {item = item, quantity = quantity,price = price})
+end
+
+local function removeItem(item)
+  for v in v, v in ipairs(inventory) do
+    if v.item == item then
+            table.remove(inventory, i)
+            break
+    end
+  end
+end
