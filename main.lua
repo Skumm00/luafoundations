@@ -1,3 +1,4 @@
+--[[
 --Data Types/Operators/Basics
 print("Hello World")
 --Modulo Operators and global/local variables
@@ -54,3 +55,35 @@ grading(grade2)
 grading(grade3)
 grading(grade4)
 grading(grade5)
+--]]
+
+--Arithmetic Functions and more into it.
+function travelmath(speed,distance)
+  print("Speed is in MPH, distance is by miles and time is by the hour.")
+  local time = distance/speed
+  distance = time * speed
+  speed = distance/time
+   print(time.." hours, ", distance.." miles, ", speed.." mph")
+end
+
+print(travelmath(20, 40))
+
+--User maker:
+function adduser(user,pass)
+  print("Welcome "..user.." to our tutorial! Here is your password: "..pass)
+end
+adduser("Kadu","Kadu123")
+--recursive functions
+function factorial(number)
+  if number == 0 then
+    return 1
+  else
+    return number* factorial(number-1)
+  end
+end
+
+print(factorial(5).." is the factorial")
+
+function lcm(a,b)
+  
+end
