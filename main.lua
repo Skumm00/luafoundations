@@ -55,7 +55,6 @@ grading(grade2)
 grading(grade3)
 grading(grade4)
 grading(grade5)
---]]
 
 --Arithmetic Functions and more into it.
 function travelmath(speed,distance)
@@ -87,3 +86,56 @@ print(factorial(5).." is the factorial")
 function lcm(a,b)
   
 end
+--]]
+--Loops and Conditionals
+--GCD functions
+function GCD(a,b)
+  if b == 0 then
+    return a
+--Fibonati Sequence
+function fibonacci(n)
+  if n <= 1 then
+    return 1
+  else
+    return fibonacci(n-1) + fibonacci(n-2)
+  end
+end
+
+for i = 0,20 do
+  print(fibonacci(i))
+end
+
+--Loops
+    --for loop
+for i = 1, 10 do
+  print(i)
+end
+--white loops
+local j = 1
+while j <= 10 do
+  print(j)
+  j = j + 1
+end
+
+local k = 1
+repeat
+  print(k)
+  k = k + 1
+  until k > 10
+
+for i = 10, 1, -1 do
+  print(i)
+end
+
+local numbers = {1, 2, 3, 4, 5}
+for index, value in ipairs(numbers) do
+  print(index, value)
+end
+
+local sum = 0
+for i = 1, 5 do
+  sum = sum + i
+    end
+  print(sum)
+end
+
