@@ -188,10 +188,69 @@ local function addInventory(item, quantity, price)
 end
 
 local function removeItem(item)
-  for v in v, v in ipairs(inventory) do
-    if v.item == item then
+    for i, v in ipairs(inventory) do
+        if v.item == item then
             table.remove(inventory, i)
             break
+        end
     end
+end
+
+local function updateQuantity(item, quantity)
+  for i, v in ipairs(inventory) do
+      if v.item == item then
+          v.quantity = quantity
+          break
+      end
   end
+end
+
+--update the quantity
+local function printInventory()
+  for i, v in ipairs(inventory) do
+      print(v.item .. ": " .. v.quantity .. " available at $" .. v.price .. " each!")
+  end
+end
+
+-- Add item
+addInventory("Grapes", 15, 1.2)
+
+-- Remove item
+removeItem("Banana")
+
+--uPdate the quantity of how many
+updateQuantity("Apple", 20)
+
+-- Show the inventory
+printInventory()
+--EROR HANDLING
+function divide(a, b)
+  if b == 0 then
+      error("Error, no divide by zero")
+  else
+      return a / b
+  end
+end
+
+-- Using pcall to handle errors
+local status, result = pcall(divide, 10, 0)
+if status then
+  print("Result: " .. result)
+else
+  print("Error:" .. result)
+end
+
+-- Another example with assert
+function add(a, b)
+  assert(type(a) == "nu", "Error: 'a' must be a number")
+  assert(type(b) == "number", "Error: 'b' must be a number")
+  return a + b
+end
+
+-- This will trigger an error
+local status, result = pcall(add, 10, "five")
+if status then
+  print("Sum: " .. result)
+else
+  print("Error: " .. result)
 end
