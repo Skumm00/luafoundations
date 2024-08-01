@@ -84,10 +84,6 @@ end
 
 print(factorial(5).." is the factorial")
 
-function lcm(a,b)
-  
-end
-
 --Loops and Conditionals
 
 --Fibonati Sequence
@@ -104,30 +100,47 @@ for i = 0,20 do
 end
 fibonacci(10)
 --Loops
-    --for loop
+    --numerical for loop
 for i = 2,100,10 do
   print(i)
 end
+--Generic For Loop
+
+--iterates all values in the list
+function myIterator(s)
+  local index = 0
+  local length = #s
+  return function()--anonomyus function
+    index = index + 1
+    if index <= length then
+      return s[index],index --more complicated way of returning everything in a list/or using ipairs
+    end
+  end
+end
+function genericFor(s)
+  --iterate the function using a for loop(non numerical)
+  for item,index in myIterator(s) do
+    print(item,index)
+  end
+end
+examplelist = {"Apple","Cherry","Banana"}
+genericFor(examplelist)
 --while loops
 local j = 1
 while j <= 10 do
   print(j)
   j = j + 1
 end
-
+--repeat loop
 local k = 1
 repeat
   print(k)
   k = k + 1
   until k > 10
 
+--Numerical Loops and recursion project.
 
-local nums = {1,2,42,42}
-for index,value in ipairs(nums) do
-  print("Using ipairs here is the values."..index,value)
-end
---Loops and recursion project.
---a is used as what should be inserted(the list)
+--#a is the length of a
 function FindNegativeIndex(a)
   local pos = nil
   --curenty the pos(position) does not have a value
@@ -146,24 +159,7 @@ listofnumbers = {5,100,5,1,95600,0,-4892}
 FindNegativeIndex(listofnumbers)
 --should return the last test.
 
---TABLES(Car table)
-local cars = {"Volks Wagon", "Lambo", "Buggati"}
-
--- Accesse the elements of the car table
-print(cars[1])
-print(cars[2])
-print(cars[3])
---NOTICE HOW THE CARS ARE ACCESED FROM 1 - NTH value. There is no 0 value in lua!
-
--- Adding new stuff to the car table
-table.insert(cars, "Humvee")
-print(cars[4])
-
--- Iterating over car table
-for i, cars in ipairs(cars) do
-    print(i, cars)
-end
-
+--TABLES
 -- Key pairs
 local person = {
     name = "Kadu",
@@ -180,6 +176,40 @@ print(person.area)
 person.age = 31
 print(person.age)
 
+--Car Mini Project
+local cars = {"Volks Wagon", "Lambo", "Buggati"}
+
+-- Accesse the elements of the car table
+print(cars[1])
+print(cars[2])
+print(cars[3])
+--NOTICE HOW THE CARS ARE ACCESED FROM 1 - NTH value. There is no 0 value in lua!
+
+-- Adding new stuff to the car table
+table.insert(cars,"Hummer")
+print(cars[4])
+-- Iterating over car table using ipairs
+for i, cars in ipairs(cars) do
+    print(i, cars)
+end
+
+--Iterating using generic Fors and Iterators(not ipairs)
+function carIterator(s)
+  local index = 0
+  local length = #s
+  return function()--anonomyus function starts with return
+    if index <= length then
+      return s[index],index --s[index] gets the names and index gets what number its from
+    end
+  end
+end
+
+function iterateCars(s)--All this does is print the logic.
+  for index,length in carIterator(s) do
+    print(index,length)
+  end
+end
+iterateCars(cars)
 --Store Mini Project
 
 local inventory = {
@@ -230,20 +260,7 @@ updateQuantity("Apple", 20)
 -- Show the inventory
 printInventory()
 
---Life project
-local jobs = {
-  {name = "Kadu", job = "Software Engineer", salary = 100},
-   {name = "Rico", job = "Showman", salary = 50},
-   {name = "lola", job = "Showgirl", salary = 72},
-   {name = "Ronaldo", job = "Footballer", salary = 1000},
-}
-local function makeJob(name, job, salary)
-  table.insert(jobs, {name = name, job = job, salary = salary})
-end
 
-local function removeJob(name,job)
-  table.remove(jobs, {name = name, job = job})
-end
 --EROR HANDLING
 function divide(a, b)
   if b == 0 then
