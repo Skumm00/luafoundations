@@ -72,6 +72,7 @@ function adduser(user,pass)
   print("Welcome "..user.." to our tutorial! Here is your password: "..pass)
 end
 adduser("Kadu","Kadu123")
+--]]
 --recursive functions
 function factorial(number)
   if number == 0 then
@@ -88,11 +89,7 @@ function lcm(a,b)
 end
 
 --Loops and Conditionals
---GCD functions
-function GCD(a,b)
-  if b == 0 then
-    return a
-  end
+
 --Fibonati Sequence
 function fibonacci(n)
   if n <= 1 then
@@ -108,7 +105,7 @@ end
 fibonacci(10)
 --Loops
     --for loop
-for i = 2,2,10 do
+for i = 2,100,10 do
   print(i)
 end
 --while loops
@@ -124,22 +121,31 @@ repeat
   k = k + 1
   until k > 10
 
-for i = 10, 1, -1 do
-  print(i)
-end
 
-local numbers = {1, 2, 3, 4, 5}
-for index, value in ipairs(numbers) do
-  print(index, value)
+local nums = {1,2,42,42}
+for index,value in ipairs(nums) do
+  print("Using ipairs here is the values."..index,value)
 end
+--Loops and recursion project.
+--a is used as what should be inserted(the list)
+function FindNegativeIndex(a)
+  local pos = nil
+  --curenty the pos(position) does not have a value
+  for i = 1,#a do --calls a for loop. Starting point(1), ending point(a)
+    if a[i] < 0 then -- if the list of the numbers:a , index value[i] is less then 0 then the pos would be i and break
+      pos = i
+      break
 
-local sum = 0
-for i = 1, 5 do
-  sum = sum + i
     end
-  print(sum)
+
+  end
+  print("Index for negative number:"..pos)--print at the end after all the if and for loops have been passed
 end
---]]
+--run a test 
+listofnumbers = {5,100,5,1,95600,0,-4892}
+FindNegativeIndex(listofnumbers)
+--should return the last test.
+
 --TABLES(Car table)
 local cars = {"Volks Wagon", "Lambo", "Buggati"}
 
@@ -223,6 +229,21 @@ updateQuantity("Apple", 20)
 
 -- Show the inventory
 printInventory()
+
+--Life project
+local jobs = {
+  {name = "Kadu", job = "Software Engineer", salary = 100},
+   {name = "Rico", job = "Showman", salary = 50},
+   {name = "lola", job = "Showgirl", salary = 72},
+   {name = "Ronaldo", job = "Footballer", salary = 1000},
+}
+local function makeJob(name, job, salary)
+  table.insert(jobs, {name = name, job = job, salary = salary})
+end
+
+local function removeJob(name,job)
+  table.remove(jobs, {name = name, job = job})
+end
 --EROR HANDLING
 function divide(a, b)
   if b == 0 then
@@ -247,10 +268,11 @@ function add(a, b)
   return a + b
 end
 
--- This will trigger an error
+-- error mesage
 local status, result = pcall(add, 10, "five")
 if status then
   print("Sum: " .. result)
 else
   print("Error: " .. result)
 end
+
