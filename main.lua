@@ -353,7 +353,7 @@ local startsWithHello = message:find("^Hello") ~= nil
 local endsWithLua = message:find("Lua!$") ~= nil
 print("Starts with 'Hello': " .. tostring(startsWithHello))
 print("Ends with 'Lua!': " .. tostring(endsWithLua))
---]]
+
 
 --main project for string modifcation
 -- Word Guessing Game
@@ -429,3 +429,38 @@ if guessedWord ~= selectedWord then
     print("No more trys.the word was: " ..selectedWord)
   
 end
+--]]
+function sorting(array)
+  
+  local index = 1--selected the partion(first num of array)
+  
+  repeat
+    function repeatincrease()
+      if array[index] > array[index+1] then
+        
+        array[index],array[index+1] = array[index+1],array[index]
+        
+        repeatincrease()
+        
+      elseif array[index] < array[index+1] then
+        
+       array[index],array[index+1] = array[index+1],array[index]
+        repeatincrease()
+        
+      end
+      index = index+1
+    end
+    
+    repeatincrease()
+  until index > #array
+  
+  print(array)
+end
+
+local test1 = {5,52,20,99,4,6}
+local test2 = {5,10,223,49,6,6}
+local test3 = {92,56,892,39,10,11,33,33}
+
+sorting(test1)
+sorting(test2)
+sorting(test3)
