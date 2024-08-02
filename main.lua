@@ -137,6 +137,39 @@ repeat
   print(k)
   k = k + 1
   until k > 10
+--Outside and Inside repeat loops
+local i = 1 
+repeat 
+  print("Inside Loop: "..i)
+  i = i+1 
+  if i == 4 then
+    break
+  end
+until i >5
+--mini project: make indexes and values from i and j
+print("Normal version of this algorithim")
+local i = 1 
+local j = 1 
+repeat
+  print("i is: "..i.." and j is: "..j)
+  j = j+1 
+  if j > 3 then
+    j = 1
+    i = i+1
+  end 
+until i > 3
+print("Nested version")
+local i = 1 
+repeat 
+  local j = 1 --declare your variables.
+  repeat --iner loop 
+     print("i:"..i.." j:"..j)
+    j = j+1 
+  until j > 3 --outer loop
+  i = i+1 
+until i > 3
+--Same thing except this is nested.
+print("Outside Loop"..i)
 
 --Numerical Loops and recursion project.
 
@@ -337,12 +370,19 @@ local words = {
 -- get a random word from list
 math.randomseed(os.time())
 local selectedWord = words[math.random(#words)]
+--System for user to create their own words and sort them in a table 
+io.write("Enter your words separated by spaces that you can guess later:")
+local wordlist = io.read():lower()
+for i in string.gmatch(wordlist, "%S+") do
+  newlist = i
+
+end
 
 --hide charachters
 function hideCharacters(word)
     local hidden = ""
     for i = 1, #word do
-        hidden = hidden .. "_"
+        hidden = hidden .. "_" --repeats all the hidden words
     end
     return hidden
 end
@@ -360,7 +400,7 @@ function revealCharacters(word, hidden, guess, index)
 end
 
 -- Main game loop
-local guessedWord = hideCharacters(selectedWord)
+local guessedWord = hideCharacters(newlist)
 
 local attempts = 5
 
