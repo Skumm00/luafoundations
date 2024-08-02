@@ -264,7 +264,7 @@ printInventory()
 --Sorting From Least to Greatest Functions
 --Easy Method for premade array
 
-s = {55,12,71,2,11,24}
+s = {55,12,6,5,3}
 
 s[1],s[2],s[3],s[4],s[5],s[6] = s[3],s[1],s[6],s[2],s[5],s[4]
 
@@ -274,24 +274,49 @@ for value in ipairs(s) do
   
 end
 
---Hard Method for premade array
+--string modification becaudrbthis priject needs for the next part
+-- String Manipulation Basics
 
-function sort(array)
-  n = 1
-  
-  c = nil
-  if array[n] > array[n+1] then
-    array[n],array[n+n] = array[n],array[n+n]
-    
-    local c =  1
-    
-  elseif  array[n] < array[n+1] then
-    array[n], array[n+n] = array[n+n],array[n]
-    
-    local c = 1
-  end
-  print(sorting)
+--basics 
+local firstName = "Skand"
+local lastName = "Bajpai"
+local fullName = firstName .. " " .. lastName
+print("Full Name: " .. fullName)
+
+--strongs length
+local message = "Hello, Lua!"
+local length = #message
+print("Message Length: " .. length)
+
+--uppercase lowercase
+local uppercaseMessage = message:upper()
+local lowercaseMessage = message:lower()
+print("Uppercase: " .. uppercaseMessage)
+print("Lowercase: " .. lowercaseMessage)
+
+-- Substrings
+local substring = message:sub(7, 9)  -- Gets "Lua"
+print("Substring: " .. substring)
+
+--replace
+local replacedMessage = message:gsub("Lua", "World")
+print("Replaced: " .. replacedMessage)
+
+--remove whitespace
+local paddedString = "   Trim Me   "
+local trimmedString = paddedString:match("^%s*(.-)%s*$")
+print("Trimmed: " .. trimmedString)
+
+--split
+local csvData = "apple,banana,orange"
+local fruits = {}
+for fruit in csvData:gmatch("[^,]+") do
+    table.insert(fruits, fruit)
 end
-sorting = s
+print("Fruits: " .. table.concat(fruits, ", "))
 
-sort(sorting)
+--prefixes suffixes
+local startsWithHello = message:find("^Hello") ~= nil
+local endsWithLua = message:find("Lua!$") ~= nil
+print("Starts with 'Hello': " .. tostring(startsWithHello))
+print("Ends with 'Lua!': " .. tostring(endsWithLua))
