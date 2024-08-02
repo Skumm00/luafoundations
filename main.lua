@@ -72,7 +72,7 @@ function adduser(user,pass)
   print("Welcome "..user.." to our tutorial! Here is your password: "..pass)
 end
 adduser("Kadu","Kadu123")
---]]
+
 --recursive functions
 function factorial(number)
   if number == 0 then
@@ -259,37 +259,39 @@ updateQuantity("Apple", 20)
 
 -- Show the inventory
 printInventory()
+--]]
 
+--Sorting From Least to Greatest Functions
+--Easy Method for premade array
 
---EROR HANDLING
-function divide(a, b)
-  if b == 0 then
-      error("Error, no divide by zero")
-  else
-      return a / b
+s = {55,12,71,2,11,24}
+
+s[1],s[2],s[3],s[4],s[5],s[6] = s[3],s[1],s[6],s[2],s[5],s[4]
+
+for value in ipairs(s) do
+  
+  print(value)
+  
+end
+
+--Hard Method for premade array
+
+function sort(array)
+  n = 1
+  
+  c = nil
+  if array[n] > array[n+1] then
+    array[n],array[n+n] = array[n],array[n+n]
+    
+    local c =  1
+    
+  elseif  array[n] < array[n+1] then
+    array[n], array[n+n] = array[n+n],array[n]
+    
+    local c = 1
   end
+  print(sorting)
 end
+sorting = s
 
--- Using pcall to handle errors
-local status, result = pcall(divide, 10, 0)
-if status then
-  print("Result: " .. result)
-else
-  print("Error:" .. result)
-end
-
--- Another example with assert
-function add(a, b)
-  assert(type(a) == "nu", "Error: 'a' must be a number")
-  assert(type(b) == "number", "Error: 'b' must be a number")
-  return a + b
-end
-
--- error mesage
-local status, result = pcall(add, 10, "five")
-if status then
-  print("Sum: " .. result)
-else
-  print("Error: " .. result)
-end
-
+sort(sorting)
