@@ -259,7 +259,7 @@ updateQuantity("Apple", 20)
 
 -- Show the inventory
 printInventory()
---]]
+
 
 --Sorting From Least to Greatest Functions
 --Easy Method for premade array
@@ -320,3 +320,72 @@ local startsWithHello = message:find("^Hello") ~= nil
 local endsWithLua = message:find("Lua!$") ~= nil
 print("Starts with 'Hello': " .. tostring(startsWithHello))
 print("Ends with 'Lua!': " .. tostring(endsWithLua))
+--]]
+
+--main project for string modifcation
+-- Word Guessing Game
+
+-- Initialize a list of words (you can add more!)
+local words = {
+    "skand",
+    "hacklub",
+    "apple",
+    "error",
+    "fun"
+}
+
+-- get a random word from list
+math.randomseed(os.time())
+local selectedWord = words[math.random(#words)]
+
+--hide charachters
+function hideCharacters(word)
+    local hidden = ""
+    for i = 1, #word do
+        hidden = hidden .. "_"
+    end
+    return hidden
+end
+
+-- Recursive function so the guessed characters get revealed
+function revealCharacters(word, hidden, guess, index)
+    if index > #word then
+        return hidden
+    end
+    local char = word:sub(index, index)
+    if char == guess then
+        hidden = hidden:sub(1, index - 1) .. char .. hidden:sub(index + 1)
+    end
+    return revealCharacters(word, hidden, guess, index + 1)
+end
+
+-- Main game loop
+local guessedWord = hideCharacters(selectedWord)
+
+local attempts = 5
+
+print("Welcome to the GUESSER")
+print("Guess the hidden word (you have " .. attempts .. " trys): " .. guessedWord)
+
+while attempts > 0 do
+    io.write("Enter your guess: ")
+    local guess = io.read():lower()
+
+    if selectedWord:find(guess, 1, true) then
+        guessedWord = revealCharacters(selectedWord, guessedWord, guess, 1)
+        print("Correct! Word so far: " .. guessedWord)
+    else
+        attempts = attempts - 1
+        print("Wrong! Attempts remaining: " .. attempts)
+    end
+
+    if guessedWord == selectedWord then
+        print("Nice! You guessed the word: " .. selectedWord)
+        break
+    end
+end
+
+if guessedWord ~= selectedWord then
+    print("No more trys.the word was: " ..selectedWord)
+  
+end
