@@ -484,3 +484,52 @@ sum(3)
 sum(4)
 
 sum(2)
+
+--Num of numofdigits 
+function numofdigits(n)
+    local count = 0
+  
+    local temp = n
+
+    if temp == 0 then  -- Base Case
+        count = 1
+    else
+        while temp > 0 do
+            temp = math.floor(temp / 10)
+            count = count + 1
+        end
+    end
+
+    print("The number of digits of " .. n .. " is " .. count .. "!")
+end
+--Running Tests 
+numofdigits(1212)
+numofdigits(12)
+numofdigits(42)
+--reverse Number 
+
+function reverse(n)
+    local remain = 0
+    if n == 0 then  -- initial Base casse
+        print(0)
+    else
+        local reverse = ""
+        while n ~= 0 do
+            remain = n % 10  --rightest digit
+            n = math.floor(n/10)
+            reverse = reverse..remain
+        end
+        print("The Reverse of "..n.." is "..reverse)
+    end
+end
+
+--tests 
+test1 = 124
+test2 = 11 
+test3 = 33
+reverse(test1)
+reverse(test1)
+reverse(test1)
+
+
+
