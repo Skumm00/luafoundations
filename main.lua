@@ -368,15 +368,6 @@ local words = {
 }
 
 -- get a random word from list
-math.randomseed(os.time())
-local selectedWord = words[math.random(#words)]
---System for user to create their own words and sort them in a table 
-io.write("Enter your words separated by spaces that you can guess later:")
-local wordlist = io.read():lower()
-for i in string.gmatch(wordlist, "%S+") do
-  newlist = i
-
-end
 
 --hide charachters
 function hideCharacters(word)
@@ -429,30 +420,29 @@ if guessedWord ~= selectedWord then
     print("No more trys.the word was: " ..selectedWord)
   
 end
---]]
+
 function sorting(array)
-  local function repeatincrease()
+  local function logic()
     
     local swapped = false --checks how many times the stuff in the array got swapped
     
     index = 1 --selected the partion(first num of array)
     
-    repeat 
+    repeat --starts the repetat loop 
       if array[index] < array[index + 1] then
         
         array[index],array[index + 1] = array[index + 1],array[index]
         swapped = true
         
       end 
-      index = index + 1
+      index = index + 1 --keep adding 1
     until index >= #array --keep doing until the length of the array is less then the index
-    
-    return swapped 
+    return swapped --does all the repeating
   end 
 
   local swapped
   repeat
-    swapped = repeatincrease()
+    swapped = logic()
   until not swapped --keep repeating until no swaps are needed
 
   for i = 1, #array do 
@@ -466,3 +456,31 @@ local test2 = {1900,42,42,89,70,12}
 sorting(test1)
 sorting(test2)
 --ALL TESTS PASS
+
+--Multiplication Table
+function multiplicationTable(number)
+  for i = 1,10 do 
+    multiply = i * number
+    print("multiypling "..number.." by "..i..". Result: "..multiply)
+  end
+end
+--running different tests
+multiplicationTable(5)
+multiplicationTable(6)
+multiplicationTable(7)
+--]]
+--Sum Of Squares loop 
+function sum(n)
+  local sum = 0
+  for i = 1,n do --no step required   
+    sum = sum + i^2
+    --dont print here because it will just repeatedly print everyting
+  end
+  print("The Sum of the Squares of "..n.." is "..sum)--print here because it prints after all the maths done :)
+end
+--diferent tests
+sum(3)
+
+sum(4)
+
+sum(2)
