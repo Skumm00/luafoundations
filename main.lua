@@ -488,7 +488,7 @@ sum(4)
 
 sum(2)
 
---Num of numofdigits 
+--Number of digits function
 function numofdigits(n)
     local count = 0
   
@@ -498,7 +498,7 @@ function numofdigits(n)
         count = 1
     else
         while temp > 0 do
-          temp = math.floor(temp/10)  --keep dividing by 10 and addin 1 to the count!
+          temp = math.floor(temp/10)  --Divide by 10 and addin 1 to the count!
             count = count + 1
         end
     end
@@ -514,12 +514,12 @@ numofdigits(42)
 function reverse(n)
     local remain = 0
     local n = n
-    if n == 0 then  -- initial Base case if 0
+    if n == 0 then  -- initial Base case of 0
         print(0)
     else
         local reverse = ""
         while n ~= 0 do
-            remain = n% 10  --rightest digit
+            remain = n% 10  --rightmost digit
             n = math.floor(n/10)
             reverse = reverse..remain
         end
@@ -555,8 +555,8 @@ function is_prime(n) --now the function is_prime
     print(n.." is not prime!")
     
   elseif n%2 ~= 0 then
-     --cuz remendier of a prime number divided by 2 shouldnt equal 0
-    print(n.." IS PRIME!")
+     --remainder of a prime number should not be 0
+    print(n.." Is prime")
     
   end
 end
@@ -564,16 +564,52 @@ end
 function findprime(n)
   
   for i = n-1,2,-1 do
-    if is_prime() then --now u gotta define the function isprime()
+    if is_prime() then --define the function is_prime()
       
       return i
     end
   end
   --numerical for loop, starting from the number next to n to 2(last prime num). Range is negative 1 because we need to minus 1
-  return nil --automaticly returns nil if the user doesnt put something propper   
+  return nil --automaticly returns nil if the user doesnt put something correct   
 end
---run tests 
+--run test
 is_prime(3)
 is_prime(6)
-is_prime(20)
+is_prime(9)
 is_prime(30)
+
+--Arithmetic Series 
+function arithmetic_series(a, d, n)
+    local sum = 0
+  
+    for i = 0, n - 1 do
+        sum = sum + (a + i * d)
+    end
+  
+    return sum
+end
+
+arithmetic_series(1,9,7)
+arithmetic_series(3,4,7)
+arithmetic_series(5,3,8)
+
+--Postcard and stamp project.Getting the minimum number of stamps(p and j) in a value of cents which equal to n 
+function stamps(n)
+  local p = 0
+  local q = 0
+  --Getting Q
+  while n >= 4 and n%7 ~= 0 do
+    q = q+ 1
+    n = n-4
+  end 
+  
+  --Getting N(the number of 7  value stamps)
+  p =math.floor(p/7)
+
+  print("The Number of 4 cent stamps needed are "..p.." and the number of 7 cent stamps needed are "..q)
+end
+
+stamps(31)
+stamps(8)
+stamps(25)
+stamps(34)
