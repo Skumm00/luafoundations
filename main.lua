@@ -431,36 +431,38 @@ if guessedWord ~= selectedWord then
 end
 --]]
 function sorting(array)
-  
-  local index = 1--selected the partion(first num of array)
-  
-  repeat
-    function repeatincrease()
-      if array[index] > array[index+1] then
-        
-        array[index],array[index+1] = array[index+1],array[index]
-        
-        repeatincrease()
-        
-      elseif array[index] < array[index+1] then
-        
-       array[index],array[index+1] = array[index+1],array[index]
-        repeatincrease()
-        
-      end
-      index = index+1
-    end
+  local function repeatincrease()
     
-    repeatincrease()
-  until index > #array
-  
-  print(array)
+    local swapped = false --checks how many times the stuff in the array got swapped
+    
+    index = 1 --selected the partion(first num of array)
+    
+    repeat 
+      if array[index] < array[index + 1] then
+        
+        array[index],array[index + 1] = array[index + 1],array[index]
+        swapped = true
+        
+      end 
+      index = index + 1
+    until index >= #array --keep doing until the length of the array is less then the index
+    
+    return swapped 
+  end 
+
+  local swapped
+  repeat
+    swapped = repeatincrease()
+  until not swapped --keep repeating until no swaps are needed
+
+  for i = 1, #array do 
+    print(array[i].." Sorted!")--Now finnaly just print the array entireley! Uses stuff we did before
+    
+  end
 end
 
-local test1 = {5,52,20,99,4,6}
-local test2 = {5,10,223,49,6,6}
-local test3 = {92,56,892,39,10,11,33,33}
-
+local test1 = {55,12,71,2,11,24}
+local test2 = {1900,42,42,89,70,12}
 sorting(test1)
 sorting(test2)
-sorting(test3)
+--ALL TESTS PASS
