@@ -1,3 +1,6 @@
+--Add Library! 
+require "math"
+
 --[[
 --Data Types/Operators/Basics
 print("Hello World")
@@ -491,11 +494,11 @@ function numofdigits(n)
   
     local temp = n
 
-    if temp == 0 then  -- Base Case
+    if temp == 0 then  -- Base Case if something equal to that
         count = 1
     else
         while temp > 0 do
-            temp = math.floor(temp / 10)
+          temp = math.floor(temp/10)  --keep dividing by 10 and addin 1 to the count!
             count = count + 1
         end
     end
@@ -510,26 +513,67 @@ numofdigits(42)
 
 function reverse(n)
     local remain = 0
-    if n == 0 then  -- initial Base casse
+    local n = n
+    if n == 0 then  -- initial Base case if 0
         print(0)
     else
         local reverse = ""
         while n ~= 0 do
-            remain = n % 10  --rightest digit
+            remain = n% 10  --rightest digit
             n = math.floor(n/10)
             reverse = reverse..remain
         end
-        print("The Reverse of "..n.." is "..reverse)
+        print("The Reverse is "..reverse)
     end
 end
 
 --tests 
 test1 = 124
-test2 = 11 
+test2 = 11
 test3 = 33
 reverse(test1)
-reverse(test1)
-reverse(test1)
+reverse(test2)
+reverse(test3)
 
+--Square root Functions Mini Project 
+function findsquare(n)
+  local square = n * n 
+  local squareroot = math.sqrt(n) --Use the math library 
+  print("The square and square root are "..square..", "..squareroot) --returns both the values
+end
+--Now going to run tests 
+findsquare(5)
+findsquare(4)
 
+--Finding the largerst prime number compared to something 
 
+function is_prime(n) --now the function is_prime
+  if n < 2 then 
+    return false --invalid statement 
+    
+  elseif n%2 == 0 then 
+    print(n.." is not prime!")
+    
+  elseif n%2 ~= 0 then
+     --cuz remendier of a prime number divided by 2 shouldnt equal 0
+    print(n.." IS PRIME!")
+    
+  end
+end
+
+function findprime(n)
+  
+  for i = n-1,2,-1 do
+    if is_prime() then --now u gotta define the function isprime()
+      
+      return i
+    end
+  end
+  --numerical for loop, starting from the number next to n to 2(last prime num). Range is negative 1 because we need to minus 1
+  return nil --automaticly returns nil if the user doesnt put something propper   
+end
+--run tests 
+is_prime(3)
+is_prime(6)
+is_prime(20)
+is_prime(30)
