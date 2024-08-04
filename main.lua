@@ -613,7 +613,7 @@ stamps(31)
 stamps(8)
 stamps(25)
 stamps(34)
---]]
+
 --Factorial Mini Project 
 
 function factorial(n) 
@@ -630,26 +630,64 @@ function factorial(n)
 end
 
 factorial(3)
-
+--]]
 --Madlibs Project 
-
 function madlibs(template)
-  noun = "Default noun"
-  adjective = "Default Adjective"
-  verb = "Default Verb" 
-  while "Noun" in template do
-    io.write("Enter A Noun")
+  while template:find("Noun") do
+    io.write("Enter a Noun: ")
     local noun = io.read()
-    template = template:gsub("Noun", noun)
+    template = template:gsub("Noun", noun, 1)
   end
 
-  while "Adjective" in template do
-    io.write("Enter A Adjective")
-    local noun = io.read()
-    template = template:gsub("Adjective", noun)
+  while template:find("Adjective") do
+    io.write("Enter an Adjective: ")
+    local adjective = io.read()
+    template = template:gsub("Adjective", adjective, 1)
   end
-  
+
+  while template:find("Verb") do
+    io.write("Enter a Verb: ")
+    local verb = io.read()
+    template = template:gsub("Verb", verb, 1)
+  end
+
+  return template
 end
 
--- a test to see why the code is unreachable
-madlibs("Noun was a funny man")
+--Testing the madblibs
+exampletemp = "Noun was a Adjective person who played a lot. He liked to Verb."
+local story = madlibs(exampletemp)
+print(story)
+
+--school grades project 
+
+-- Make a grading system and change the scores project
+school = {
+    name = {'TIMMEH', 'RAJESH', 'KADU', 'Billy', 'Raj'},
+    scores = {29, 49, 99, 48}
+}--the list of all the names
+
+double = {0, 4, 8, 12, 16} --the list of numbers used to classify
+value = {}
+
+for i = 1, #double do
+    if double[i] % 2 == 0 then
+        table.insert(value, 'even')
+    else
+        table.insert(value, 'odd')
+    end
+end
+--used to classifiy if a list of numbers or even or odd.
+for i = 1, #value do
+    print(value[i])
+end
+
+for i = 1, #school.scores do
+    school.scores[i] = school.scores[i] * 2
+end
+
+print("Updated scores:")
+for i = 1, #school.scores do
+    print(school.scores())
+end
+
