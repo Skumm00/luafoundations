@@ -660,14 +660,13 @@ local story = madlibs(exampletemp)
 print(story)
 
 --school grades project 
-
 -- Make a grading system and change the scores project
 school = {
     name = {'TIMMEH', 'RAJESH', 'KADU', 'Billy', 'Raj'},
     scores = {29, 49, 99, 48}
-}--the list of all the names
+} -- the list of all the names
 
-double = {0, 4, 8, 12, 16} --the list of numbers used to classify
+double = {0, 4, 8, 12, 16} -- the list of numbers used to classify
 value = {}
 
 for i = 1, #double do
@@ -677,7 +676,7 @@ for i = 1, #double do
         table.insert(value, 'odd')
     end
 end
---used to classifiy if a list of numbers or even or odd.
+-- used to classify if a list of numbers is even or odd.
 for i = 1, #value do
     print(value[i])
 end
@@ -688,6 +687,45 @@ end
 
 print("Updated scores:")
 for i = 1, #school.scores do
-    print(school.scores())
+    print(school.scores[i])
 end
 
+print("Data of the school:")
+for key, val in pairs(school) do
+    print(key .. ":")
+    for i = 1, #val do
+        print(val[i])
+    end
+end
+--anonomyus functions(lambda)
+
+-- Assign a anonymous function to a variable
+local add = function(a, b)
+    return a + b
+end
+
+print(add(2, 3)) --Gives 5 as output
+
+-- Using a anonomyus function directly
+print((function(a, b) return a * b end)(4, 5)) -- Output: 20
+
+  -- Passing an anonymous function as the argument
+function operate(func, x, y)
+    return func(x, y)
+end
+
+local result = operate(function(a, b) return a - b end, 10, 3)
+print(result) --Gives 7 as output
+
+-- returns anonomyus function from an other function.
+function createMultiplier(factor)
+    return function(x)
+        return x * factor
+    end
+end
+
+local double = createMultiplier(2)
+print(double(5)) --Gives 10 as output
+
+local triple = createMultiplier(3)
+print(triple(5)) --Gives 15 as output
