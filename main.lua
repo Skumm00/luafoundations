@@ -471,7 +471,7 @@ end
 multiplicationTable(5)
 multiplicationTable(6)
 multiplicationTable(7)
---]]
+
 --Sum Of Squares loop 
 function sum(n)
   local sum = 0
@@ -613,3 +613,43 @@ stamps(31)
 stamps(8)
 stamps(25)
 stamps(34)
+--]]
+--Factorial Mini Project 
+
+function factorial(n) 
+  if n == 0 then 
+     print("The factorial of "..n.." is 1")
+  elseif n == nil then 
+    print("tHERES A ERROR!")
+    return nil
+    
+  else
+    result = n * factorial(n-1) --the logic of the factorial function
+  end
+  return result
+end
+
+factorial(3)
+
+--Madlibs Project 
+
+function madlibs(template)
+  noun = "Default noun"
+  adjective = "Default Adjective"
+  verb = "Default Verb" 
+  while "Noun" in template do
+    io.write("Enter A Noun")
+    local noun = io.read()
+    template = template:gsub("Noun", noun)
+  end
+
+  while "Adjective" in template do
+    io.write("Enter A Adjective")
+    local noun = io.read()
+    template = template:gsub("Adjective", noun)
+  end
+  
+end
+
+-- a test to see why the code is unreachable
+madlibs("Noun was a funny man")
