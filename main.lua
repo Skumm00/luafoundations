@@ -731,90 +731,91 @@ local triple = createMultiplier(3)
 print(triple(5)) --Gives 15 as output
 --]]
 --Story Game
-local scenarios = {
-start = function()
-  currentScenario = "start"
-  print("You are in a world of Horror. Where do you decide to travel to?")
+local scenarios = {} --make a table so scenarios are already defined
+
+scenarios.start = function()
+  print("You are in a world of Horror. Where do you decide to travel to? left/right")
   local choice = io.read()
   if choice == "left" then
-    currentScenario = "left"
+    print("left")
     scenarios.left()
   elseif choice == "right" then
-    currentScenario = "right"
+    print("right")
     scenarios.right()
   else
     print("Enter a valid choice!")
     scenarios.start()
   end
-end,
-left = function()
-  currentScenario = "left"
-  print("You chose the path to go left.. As you walk across an empty field of dead trees, you find a ravine with light coming from the bottom. As you walk closer, you then notice it is filled with dangerous lava. As you try to leave, you see that the path you went on, has started to fill with lava as well and only see a rope, and a stone bridge to travel across before the lava gets to you. What do you pick?")
+end
+
+scenarios.left = function()
+  print("You chose the path to go left.. As you walk across an empty field of dead trees, you find a ravine with light coming from the bottom. As you walk closer, you then notice it is filled with dangerous lava. As you try to leave, you see that the path you went on, has started to fill with lava as well and only see a rope, and a stone bridge to travel across before the lava gets to you. What do you pick? bridge/rope")
   local choice = io.read()
   if choice == "bridge" then
-    currentScenario = "bridge"
+    print("bridge")
     scenarios.bridge()
   elseif choice == "rope" then
-    currentScenario = "rope"
+    print("rope")
     scenarios.rope()
   else
     print("Enter a valid choice!")
     scenarios.left()
   end
-end,
-right = function()
-  currentScenario = "right"
-  print("You go right and keep walking to a place that seems to stretch for infinity and not go anywhere. As you keep going you see that slowly everything disappears from sight and all the trees and bushes are gone. As you advance, you think that you chose the wrong path and start to get hungry. You then come by a random banana in the middle of nowhere and an ugly horrifying snail. What do you want to eat?")
+end
+
+scenarios.right = function()
+  print("You go right and keep walking to a place that seems to stretch for infinity and not go anywhere. As you keep going you see that slowly everything disappears from sight and all the trees and bushes are gone. As you advance, you think that you chose the wrong path and start to get hungry. You then come by a random banana in the middle of nowhere and an ugly horrifying snail. What do you want to eat? snail/banana")
   local choice = io.read()
   if choice == "snail" then
-    currentScenario = "snail"
+    print("snail")
     scenarios.snail()
   elseif choice == "banana" then
-    currentScenario = "banana"
+    print("banana")
     scenarios.banana()
   else
     print("Enter a valid choice!")
     scenarios.right()
   end
-end,
-bridge = function()
-  currentScenario = "bridge"
-  print("You chose to cross the bridge. The bridge is old and cracked and you think that if you try to cross it, it will break. But the lava is getting closer and closer, so you have no choice. Do you cross the bridge? Yes or No?")
+end
+
+scenarios.bridge = function()
+  print("You chose to cross the bridge. The bridge is old and cracked and you think that if you try to cross it, it will break. But the lava is getting closer and closer, so you have no choice. Do you cross the bridge? Yes or No? yes/no")
   local choice = io.read()
-  if choice == "Yes" then
+  if choice == "yes" then
     print("You passed the bridge and now you are able to leave finally!")
-    currentScenario = nil
-  elseif choice == "No" then
+  elseif choice == "no" then
     print("You believe the bridge is too dangerous but that's the worst decision you made. Soon the bridge is covered with lava and it rises, to the point where you can't escape. You Lost.")
-    currentScenario = nil
   else
     print("Enter a valid choice!")
     scenarios.bridge()
   end
-end,
-rope = function()
-  currentScenario = "rope"
+end
+
+scenarios.rope = function()
   print("You try leaving by rope, but it breaks and you fall into the lava. YOU LOST")
-  currentScenario = nil
-end,
-snail = function()
-  currentScenario = "snail"
+end
+
+scenarios.snail = function()
   print("You chose to eat the snail. The snail is ugly and slimy, but you are so hungry that you don't care. As you gobble it down, suddenly you feel yourself flying. Soon you fly out of this hellish landscape and leave! You Win")
-  currentScenario = nil
-end,
-banana = function()
-  currentScenario = "banana"
+end
+
+scenarios.banana = function()
   print("You eat the banana which looks amazing but turns out is poisoned. You Lost :(")
-  currentScenario = nil
-end,
-}
+end
 
+local function game()
+  scenarios.start()
+end
 
-function gamestart()
-  currentScenario = "start"
-  while currentScenario do
-    scenarios[currentScenario]()
+game()
+
+function search(input)
+  input = io.read("Enter a unit to search for. Example: unit1(). For more help type in /help")
+  if input == "unit1" then --logic for now
+    unit1() 
+  elseif input == "unit2" then
+    unit2()
+  elseif input == "unit3()" then
+    unit3()
   end
 end
-gamestart()
-
