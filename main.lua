@@ -731,9 +731,9 @@ local triple = createMultiplier(3)
 print(triple(5)) --Gives 15 as output
 
 --Story Game 
-
 local scenarios = {
-  start = function()
+  function start()
+    currentScenario = 1
     print("You are in a world of Horror. Where do you decide to travel to?")
     local choice = io.read("Left or Right?")
     if choice == "left" then
@@ -746,18 +746,20 @@ local scenarios = {
     end
   end,
   left = function()
+    currentScenario =  2
     print("You chose the path to go left.. As you walk across an empty field of dead trees, you find a ravine with light coming from the bottom. As you walk closer, you then notice it is filled with dangerous lava. As you try to leave, you see that the path you went on, has started to fill with lava as well and only see a rope, and a stone bridge to travel across before the lava gets to you. What do you pick?")
     local choice = io.read("Bridge or Rope?")
     if choice == "bridge" then
      return "bridge"
     elseif choice == "rope" then
-     return "left"
+     return "rope"
     else 
       print("Enter a valid choice!")
       local choice  = io.read("Bridge or Rope?")
     end
   end,
   right = function()
+    currentScenario = 3
     print("You go right and keep walking to a place that seems to stretch for infity and not go anywhere. As you keep going you see that slowly everything disepears from sight and all the trees and bushes are gone. As you advance, you think that you chose the wrong path and start to get hungry. You then come by a random banna in the middle of nowhere and a Ugly horrifying snail. What do you want to eat?")
     local choice = io.read("Snail or Banana?")
     if choice == "snail" then
@@ -769,8 +771,85 @@ local scenarios = {
       local choice  = io.read("Banana or Snail?")
     end
   end,
+  bridge = function()
+    currentScenario = 4
+    print("You chose to cross the bridge. The bridge is old and cracked and you think that if you try to cross it, it will break. But the lava is getting closer and closer, so you have no choice. Do you cross the bridge? Yes or No?")
+    local choice = io.read("Yes or No?")
+    if choice == "Yes" then
+     return "yes"
+    elseif choice == "No" then
+      return "no"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Yes or No?")
+    end
+  end,
+  rope = function()
+    currentScenario = 5
+    print("You chose the rope. The rope is long and thin, and you think that it might not hold your weight. But the lava is getting closer and closer, so you have no choice. Do you climb the rope? Yes or No?")
+    local choice = io.read("Yes or No?")
+    if choice == "Yes" then
+     return "yes"
+    elseif choice == "No" then
+      return "no"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Yes or No?")
+    end
+  end,
+  snail = function()
+    currentScenario = 6
+    print("You chose to eat the snail. The snail is ugly and slimy, but you are so hungry that you don't care. Do you eat the snail? Yes or No?")
+    local choice = io.read("Yes or No?")
+    if choice == "Yes" then
+     return "yes"
+    elseif choice == "No" then
+      return "no"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Yes or No?")
+    end
+  end,
+  banana = function()
+    currentScenario = 7
+    print("You chose to eat the banana. The banana is ripe and delicious, and you feel much better after eating it. You continue walking, and eventually you come to a fork in the road. Do you go left or right?")
+    local choice = io.read("Left or Right?")
+    if choice == "left" then
+     return "left"
+    elseif choice == "right" then
+     return "right"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Left or Right?")
+    end
+  end,
+  yes = function()
+    currentScenario = 8
+    print("You cross the bridge. The bridge is rickety, but you manage to make it across without falling. You continue walking, and eventually you come to a fork in the road. Do you go left or right?")
+    local choice = io.read("Left or Right?")
+    if choice == "left" then
+     return "left"
+    elseif choice == "right" then
+     return "right"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Left or Right?")
+    end
+  end,
+  no = function()
+    currentScenario = 9
+    print("You decide not to cross the bridge. The lava is getting closer, and you know that you will have to make a decision soon. Do you climb the rope or jump into the lava?")
+    local choice = io.read("Rope or Lava?")
+    if choice == "Rope" then
+     return "rope"
+    elseif choice == "Lava" then
+      return "lava"
+    else 
+      print("Enter a valid choice!")
+      local choice  = io.read("Rope or Lava?")
+    end
+  end,
 }
-
 local function game()
   currentScenario = 1 --so should give the first function in scenarios
   while currentScenario < #scenarios do --as long as the current scenario is less then length
